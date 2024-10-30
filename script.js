@@ -1,8 +1,12 @@
 // script.js
 
-// Retrieve the total amount from localStorage or set to 0 if no stored value exists
-let totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
-updateGlobalDisplay(totalAmount); // Initialize display on page load
+// Fetch the current total amount from the server on page load
+fetch('/api/donation')
+  .then(response => response.json())
+  .then(data => {
+    updateGlobalDisplay(data.totalAmount);
+  })
+  .catch(error => console.error('Error fetching total donation:', error));
 
 // Function to update the global donation display
 function updateGlobalDisplay(amount) {
@@ -25,12 +29,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Check if the input is a valid number and greater than 0
       if (!isNaN(amount) && amount > 0) {
-        totalAmount += amount; // Update the total amount
-        localStorage.setItem('totalAmount', totalAmount); // Save new total to localStorage
-        updateGlobalDisplay(totalAmount); // Update display with new total
-
-        // Clear the input field after donation
-        amountInput.value = '';
+        // Send the donation amount to the server
+        fetch('/api/donation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ amount: amount })
+        })
+        .then(response => response.json())
+        .then(data => {
+          updateGlobalDisplay(data.totalAmount); // Update display with new total
+          // Clear the input field after donation
+          amountInput.value = '';
+        })
+        .catch(error => {
+          console.error('Error updating total donation:', error);
+        });
       } else {
         alert('Please enter a valid donation amount.');
       }
