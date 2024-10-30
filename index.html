@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote for Ben Steel</title>
     <style>
-        /* CSS for styling the banner */
+        /* CSS for styling the banner and centering text */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4; /* Light background for contrast */
+            height: 100vh; /* Full viewport height */
+            display: flex; /* Use flexbox for centering */
+            flex-direction: column; /* Column layout */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
         }
         .banner {
-            background-color: #007bff; /* Primary color for the banner */
-            color: white; /* Text color */
+            background-color: lightgray; /* Light gray color for the banner */
+            color: black; /* Text color */
             text-align: center; /* Centering text */
             padding: 20px; /* Space around text */
             position: fixed; /* Fixed position at the top */
@@ -22,7 +27,6 @@
             z-index: 1000; /* Ensure it stays above other content */
         }
         .content {
-            margin-top: 80px; /* Space for the banner */
             text-align: center; /* Center the main content */
         }
     </style>
@@ -32,7 +36,6 @@
         Vote for Ben Steel
     </div>
     <div class="content">
-        <!-- Main content goes here -->
         <h1>Welcome to the Campaign!</h1>
         <p>Thank you for visiting. Learn more about Ben Steel's vision for the future.</p>
     </div>
