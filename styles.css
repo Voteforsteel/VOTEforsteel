@@ -29,12 +29,6 @@ section {
   margin: 10px;
 }
 
-#donate {
-  background-color: #f4f4f4;
-  padding: 20px;
-  text-align: center;
-}
-
 button {
   padding: 10px 15px;
   color: #fff;
@@ -46,4 +40,3 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
