@@ -1,8 +1,8 @@
 // script.js
 
-// Retrieve the total amount from localStorage or set to 0 if not available
+// Retrieve the total amount from localStorage or set to 0 if no stored value exists
 let totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
-updateGlobalDisplay(totalAmount); // Update display on page load
+updateGlobalDisplay(totalAmount); // Initialize display on page load
 
 // Function to update the global donation display
 function updateGlobalDisplay(amount) {
@@ -12,12 +12,12 @@ function updateGlobalDisplay(amount) {
   }
 }
 
-// Add event listener to handle donations if the form exists on the page
+// Add event listener to handle donations if the donation form exists on the page
 document.addEventListener('DOMContentLoaded', function() {
   const donationForm = document.getElementById('donationForm');
   if (donationForm) {
     donationForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevents page refresh on form submission
+      event.preventDefault(); // Prevent page refresh on form submission
 
       // Get the donation amount from the input field
       const amountInput = document.getElementById('amount');
@@ -25,11 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Check if the input is a valid number and greater than 0
       if (!isNaN(amount) && amount > 0) {
-        totalAmount += amount; // Add donation to the total amount
-
-        // Update the localStorage and display
-        localStorage.setItem('totalAmount', totalAmount);
-        updateGlobalDisplay(totalAmount); // Update display on all pages
+        totalAmount += amount; // Update the total amount
+        localStorage.setItem('totalAmount', totalAmount); // Save new total to localStorage
+        updateGlobalDisplay(totalAmount); // Update display with new total
 
         // Clear the input field after donation
         amountInput.value = '';
